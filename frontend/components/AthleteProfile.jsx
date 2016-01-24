@@ -2,8 +2,7 @@ var React = require('react');
 var AthleteStore = require('../stores/athletes');
 var ApiUtil = require('../util/api_util');
 
-
-var Test = React.createClass({
+var AthleteProfile = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
   },
@@ -31,7 +30,7 @@ var Test = React.createClass({
     return(
 
     <div>
-      <div><h1>In the Test</h1></div>
+      <div><h1>In the AthleteProfile</h1></div>
       <div className="athlete-list">
       {things}
       </div>
@@ -42,4 +41,4 @@ var Test = React.createClass({
 
 });
 
-module.exports = Test;
+module.exports = AthleteProfile;

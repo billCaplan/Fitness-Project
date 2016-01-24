@@ -24194,7 +24194,11 @@
 	          'In the Test'
 	        )
 	      ),
-	      things
+	      React.createElement(
+	        'div',
+	        { className: 'athlete-list' },
+	        things
+	      )
 	    );
 	  }
 	
