@@ -22,7 +22,7 @@ var App = React.createClass({
 
     return (
       <div className="app-body">
-        <h1>This is the best site ever</h1>
+        <h1>this is where a header can go</h1>
       {this.props.children}
       </div>
     );

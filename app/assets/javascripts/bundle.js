@@ -72,7 +72,7 @@
 	      React.createElement(
 	        'h1',
 	        null,
-	        'This is the best site ever'
+	        'this is where a header can go'
 	      ),
 	      this.props.children
 	    );
@@ -31119,10 +31119,50 @@
 	  },
 	
 	  render: function () {
+	    var that = this;
 	    var athlete;
 	
 	    if (this.state.athlete) {
-	      athlete = this.state.athlete.first_name;
+	      athlete = React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'span',
+	          null,
+	          this.state.athlete.first_name
+	        ),
+	        ' ',
+	        React.createElement(
+	          'span',
+	          null,
+	          this.state.athlete.last_name
+	        ),
+	        React.createElement(
+	          'div',
+	          null,
+	          this.state.athlete.sport
+	        ),
+	        React.createElement(
+	          'div',
+	          null,
+	          this.state.athlete.height
+	        ),
+	        React.createElement(
+	          'div',
+	          null,
+	          this.state.athlete.weight
+	        ),
+	        React.createElement(
+	          'div',
+	          null,
+	          this.state.athlete.birthday
+	        ),
+	        React.createElement(
+	          'div',
+	          null,
+	          this.state.athlete.email
+	        )
+	      );
 	    } else {
 	      athlete = React.createElement(
 	        'div',

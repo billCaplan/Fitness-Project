@@ -36,10 +36,19 @@ var AthleteProfile = React.createClass({
   },
 
   render: function(){
+    var that = this;
     var athlete;
 
     if (this.state.athlete){
-      athlete = this.state.athlete.first_name;
+      athlete = <div>
+                  <span>{this.state.athlete.first_name}</span> <span>{this.state.athlete.last_name}</span>
+                  <div>{this.state.athlete.sport}</div>
+                  <div>{this.state.athlete.height}</div>
+                  <div>{this.state.athlete.weight}</div>
+                  <div>{this.state.athlete.birthday}</div>
+                  <div>{this.state.athlete.email}</div>
+
+               </div>;
   } else {
       athlete = <div>Loading</div>;
   }
