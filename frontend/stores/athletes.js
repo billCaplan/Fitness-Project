@@ -14,6 +14,20 @@ var addNewAthlete = function(newAthlete){
   _athletes.push(newAthlete);
 };
 
+AthleteStore.findAthlete = function(athleteId){
+  var targetAthleteId = parseInt(athleteId);
+  var athletes = AthleteStore.all();
+  var targetAthlete = {string: "Bad User"};
+
+  athletes.forEach(function(athlete){
+    if (athlete.id === targetAthleteId){
+      targetAthlete = athlete;
+    }
+  });
+  return targetAthlete;
+
+};
+
 AthleteStore.all = function () {
   return _athletes.slice(0);
 };

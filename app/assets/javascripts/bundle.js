@@ -54,6 +54,7 @@
 	var IndexRoute = ReactRouter.IndexRoute;
 	var Test = __webpack_require__(208);
 	var ApiUtil = __webpack_require__(232);
+	var AthleteProfile = __webpack_require__(234);
 	
 	var App = React.createClass({
 	  displayName: 'App',
@@ -81,7 +82,8 @@
 	var routes = React.createElement(
 	  Route,
 	  { path: '/', component: App },
-	  React.createElement(IndexRoute, { component: Test })
+	  React.createElement(IndexRoute, { component: Test }),
+	  React.createElement(Route, { path: 'athlete/:athleteId', component: AthleteProfile })
 	);
 	
 	ReactDOM.render(React.createElement(
@@ -24226,6 +24228,19 @@
 	  _athletes.push(newAthlete);
 	};
 	
+	AthleteStore.findAthlete = function (athleteId) {
+	  var targetAthleteId = parseInt(athleteId);
+	  var athletes = AthleteStore.all();
+	  var targetAthlete = { string: "Bad User" };
+	
+	  athletes.forEach(function (athlete) {
+	    if (athlete.id === targetAthleteId) {
+	      targetAthlete = athlete;
+	    }
+	  });
+	  return targetAthlete;
+	};
+	
 	AthleteStore.all = function () {
 	  return _athletes.slice(0);
 	};
@@ -31050,7 +31065,6 @@
 	
 	var ApiActions = {
 	  receiveAllAthletes: function (athletes) {
-	
 	    AppDispatcher.dispatch({
 	      actionType: AthleteConstants.ATHLETES_RECEIVED,
 	      athletes: athletes
@@ -31060,6 +31074,72 @@
 	};
 	
 	module.exports = ApiActions;
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var AthleteStore = __webpack_require__(209);
+	var ApiUtil = __webpack_require__(232);
+	
+	function _getApplicableAthlete(athleteId) {
+	  var athlete = AthleteStore.findAthlete(athleteId);
+	  return athlete;
+	}
+	
+	var AthleteProfile = React.createClass({
+	  displayName: 'AthleteProfile',
+	
+	  contextTypes: {
+	    router: React.PropTypes.func
+	  },
+	  getInitialState: function () {
+	    var athlete_id = this.props.routeParams.athleteId;
+	    return {
+	      athlete_id: athlete_id,
+	      athlete: {}
+	    };
+	  },
+	  componentDidMount: function () {
+	    this.athleteListener = AthleteStore.addListener(this._athletesChanged);
+	  },
+	  componentWillUnmount: function () {
+	    this.athleteListener.remove();
+	  },
+	
+	  componentWillReceiveProps: function (newProps) {
+	    var athleteId = this.props.routeParams.athleteId;
+	    this.setState({ athlete_id: athleteId, athlete: AthleteStore.findAthlete(athleteId) });
+	  },
+	
+	  _athletesChanged: function () {
+	    this.setState({ athlete: _getApplicableAthlete(this.state.athlete_id) });
+	    window.scrollTo(0, 0);
+	  },
+	
+	  render: function () {
+	    var athlete;
+	
+	    if (this.state.athlete) {
+	      athlete = this.state.athlete.first_name;
+	    } else {
+	      athlete = React.createElement(
+	        'div',
+	        null,
+	        'Loading'
+	      );
+	    }
+	
+	    return React.createElement(
+	      'div',
+	      null,
+	      athlete
+	    );
+	  }
+	});
+	
+	module.exports = AthleteProfile;
 
 /***/ }
 /******/ ]);

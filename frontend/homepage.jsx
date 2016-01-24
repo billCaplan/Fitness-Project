@@ -8,6 +8,7 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var Test = require('./components/Test');
 var ApiUtil = require('./util/api_util');
+var AthleteProfile = require('./components/AthleteProfile');
 
 
 
@@ -31,6 +32,7 @@ var App = React.createClass({
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Test}></IndexRoute>
+    <Route path="athlete/:athleteId" component={AthleteProfile}></Route>
   </Route>
 );
 
