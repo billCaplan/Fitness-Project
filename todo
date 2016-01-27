@@ -1,5 +1,12 @@
 TODO List:
 
-  Install npm class names
-  Install npm history 
   Create tables / stores / api actions / api utils / for all of the exercises
+  Add area where you create athletes
+  Add area where you add the stats
+
+  work on a header
+  Add D3 support
+  Add Auth
+  Add Admin Table
+  Add Cloudinary Support / maybe make it AWS??? Image Upload
+  Deploy on AWS through billcaplan.xyz
